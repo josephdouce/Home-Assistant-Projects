@@ -1,0 +1,70 @@
+esphome:
+  name: esphome-web-024130
+
+esp32:
+  board: nodemcu-32s
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+  baud_rate: 0
+  
+# Enable Home Assistant API
+api:
+
+ota:
+  password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Solar-Power Fallback Hotspot"
+    password: !secret fallback_password
+
+captive_portal:
+    
+uart:
+  rx_pin: GPIO3
+  tx_pin: GPIO1
+  baud_rate: 9600
+
+modbus:
+
+sensor:
+  - platform: pzemac
+    current:
+      name: "Solar Current"
+    voltage:
+      name: "Solar Voltage"
+    energy:
+      name: "Solar Energy"
+    power:
+      name: "Solar Power"
+    frequency:
+      name: "Solar Frequency"
+    power_factor:
+      name: "Solar Power Factor"
+    update_interval: 5s
+    address: 1
+    
+  - platform: pzemac
+    current:
+      name: "Consumed Current"
+    voltage:
+      name: "Consumed Voltage"
+    energy:
+      name: "Consumed Energy"
+    power:
+      name: "Consumed Power"
+    frequency:
+      name: "Consumed Frequency"
+    power_factor:
+      name: "Consumed Power Factor"
+    update_interval: 5s
+    address: 2
+    
+    

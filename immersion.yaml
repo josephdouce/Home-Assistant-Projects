@@ -20,7 +20,7 @@ wifi:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "Immersion Fallback Hotspot"
-    password: "xcvXnR2TeMiX"
+    password: !secret fallback_password
 
 captive_portal:
 
